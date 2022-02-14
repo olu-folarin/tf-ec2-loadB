@@ -53,11 +53,11 @@ resource "aws_instance" "http_servers" {
   vpc_security_group_ids = [aws_security_group.http_server_sg.id]
 
   // create an instance in each subnet: 6
-  for_each = data.aws_subnet_ids.default_subnets.ids
+  for_each  = data.aws_subnet_ids.default_subnets.ids
   subnet_id = each.value
 
   tags = {
-      name: "http_servers_${each.value}"
+    name : "http_servers_${each.value}"
   }
 
   // adding an html file to the server

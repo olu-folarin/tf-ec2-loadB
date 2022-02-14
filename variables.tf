@@ -1,11 +1,6 @@
 variable "tf_version" {
-    default = "~> 3.0"
+  default = "~> 3.0"
 }
-
-variable "aws_region" {
-    default = "us-east-1"
-}
-
 
 // private key variable
 variable "aws_key_pair" {
