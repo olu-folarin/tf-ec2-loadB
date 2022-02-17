@@ -56,23 +56,20 @@ resource "aws_instance" "http_servers" {
   subnet_id = each.value
 
   tags = {
-    name: "http_server_${each.value}"
+    name : "http_server_${each.value}"
   }
 
-  // adding an html file to the server
   connection {
-    // indicate the kinda connection you want to use
+    # indicate the kinda connection you want to use
     type = var.ec2_connection_type
-
-    // where do you want to connect to? a public or private ip?
+    # where do you want to connect to? a public or private ip?
     host = self.public_ip
-
-    // whiich ec2 user do you want to use? aws, by default, automatically assigns "ec2-user" to a newly created instance
+    # whiich ec2 user do you want to use? aws, by default, automatically assigns ec2-user to a newly created instance
     user = var.ec2_user
-    // configure a private key
+    # configure a private key
     private_key = file(var.aws_key_pair)
   }
-  // create, start and send a file to the server
+  # create, start and send a file to the server
   provisioner "remote-exec" {
     inline = [
       "sudo yum install httpd -y",
