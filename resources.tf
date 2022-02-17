@@ -44,13 +44,16 @@ resource "aws_security_group" "elb_sg" {
 // create the load balancer
 resource "aws_elb" "elb" {
   name = "elb"
-  subnets = 
-  security_groups = 
-  instances = 
+  subnets = data.aws_subnet_ids.default_subnets.ids
+  security_groups = [aws_security_group.elb_sg.id]
+  instances = values(aws_instance.http_servers).*.id
 
   // configure a port 
   listener {
-    instance
+    instance_port = 80
+    instance_protocol = http
+    lb_port = 80
+    lb_protocol = http
   }
 }
 
