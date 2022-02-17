@@ -19,4 +19,7 @@ output "aws_default_subnet_ids" {
   value = data.aws_subnet_ids.default_subnets
 }
 
-// 
+// get the elb public dns
+output "aws_public_dns" {
+  value = aws_elb.elb
+}
