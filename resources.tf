@@ -43,7 +43,15 @@ resource "aws_security_group" "elb_sg" {
 
 // create the load balancer
 resource "aws_elb" "elb" {
-  
+  name = "elb"
+  subnets = 
+  security_groups = 
+  instances = 
+
+  // configure a port 
+  listener {
+    instance
+  }
 }
 
 resource "aws_security_group" "http_server_sg" {
