@@ -39,9 +39,11 @@ resource "aws_security_group" "elb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    name = "elb_sg"
-  }
+}
+
+// create the load balancer
+resource "aws_elb" "elb" {
+  
 }
 
 resource "aws_security_group" "http_server_sg" {
