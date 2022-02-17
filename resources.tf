@@ -55,9 +55,9 @@ resource "aws_instance" "http_servers" {
   for_each  = data.aws_subnet_ids.default_subnets.ids
   subnet_id = each.value
 
-  tags = {
-    name : "http_server_${each.value}"
-  }
+  // tags = {
+  //   name : "http_servers_${each.value}"
+  // }
 
   connection {
     # indicate the kinda connection you want to use
