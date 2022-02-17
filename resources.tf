@@ -8,6 +8,42 @@ resource "aws_default_vpc" "default" {
   }
 }
 
+// LB SG
+resource "aws_security_group" "elb_sg" {
+  name = "elb_sg"
+  // vpc_id = "vpc-075343a660b9eb15c"
+  // using the default value
+  vpc_id = aws_default_vpc.default.id
+
+  // IN -> ingress: where to allow traffic from
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = var.cidr
+  }
+
+  // IN -> ingress for ssh
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.cidr
+  }
+
+  // OUT -> egress: what can you do from this server
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    name = "elb_sg"
+  }
+}
+
 resource "aws_security_group" "http_server_sg" {
   name = "http_server_sg"
   // vpc_id = "vpc-075343a660b9eb15c"

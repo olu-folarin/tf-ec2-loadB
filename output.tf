@@ -8,7 +8,7 @@ output "aws_instance_http_servers" {
 
 output "http_server_public_dns" {
   // * to get the public dns of all the servers
-  value = aws_instance.http_servers.*.public_dns
+  value = aws_instance.http_servers
 }
 
 output "aws_default_vpc_id" {
