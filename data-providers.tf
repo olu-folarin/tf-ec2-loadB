@@ -15,9 +15,9 @@ data "aws_ami" "latest_aws_linux_2" {
 }
 
 // get the latest ami ids
-// data "aws_ami_ids" "latest_aws_linux_2_ids" {
-//   owners = ["amazon"]
-// }
+data "aws_ami_ids" "latest_aws_linux_2_ids" {
+  owners = ["amazon"]
+}
 
 // all subnets in my vpc: used [3]
 // "subnet-03f0d4627c28d93a5",
